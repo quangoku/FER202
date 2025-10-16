@@ -1,0 +1,34 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+/dist # cho các dự án dùng Vite hoặc các bundler khác
+
+# misc
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.vspscc
+.npm
+
+# environment variables
+.env
+.env.local
+.env.*.local
+
+# next.js (if applicable)
+.next/
