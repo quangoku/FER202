@@ -1,0 +1,84 @@
+{
+  "medicalRecords": [
+    {
+      "id": 1,
+      "patientName": "Nguyen Van A",
+      "age": 30,
+      "gender": "Male",
+      "address": "123 Le Loi, Hanoi",
+      "date": "2025-10-20",
+      "diagnosis": "Flu",
+      "treatment": "Rest and hydration"
+    },
+    {
+      "id": 2,
+      "patientName": "Nguyen Van A",
+      "age": 30,
+      "gender": "Male",
+      "address": "123 Le Loi, Hanoi",
+      "date": "2025-10-20",
+      "diagnosis": "High blood pressure",
+      "treatment": "Medication prescribed"
+    },
+    {
+      "id": 3,
+      "patientName": "Tran Thi B",
+      "age": 25,
+      "gender": "Female",
+      "address": "456 Tran Hung Dao, Ho Chi Minh City",
+      "date": "2025-10-20",
+      "diagnosis": "Allergy",
+      "treatment": "Antihistamines"
+    },
+    {
+      "id": 4,
+      "patientName": "Le Van C",
+      "age": 40,
+      "gender": "Male",
+      "address": "789 Nguyen Trai, Da Nang",
+      "date": "2025-10-20",
+      "diagnosis": "Diabetes",
+      "treatment": "Insulin therapy"
+    },
+    {
+      "id": 5,
+      "patientName": "Le Van C",
+      "age": 40,
+      "gender": "Male",
+      "address": "789 Nguyen Trai, Da Nang",
+      "date": "2025-06-15",
+      "diagnosis": "Back pain",
+      "treatment": "Physical therapy"
+    },
+    {
+      "id": 6,
+      "patientName": "Nguyen Van D",
+      "age": 35,
+      "gender": "Male",
+      "address": "123 Phan Chu Trinh, Hue",
+      "date": null,
+      "diagnosis": null,
+      "treatment": null
+    },
+    {
+      "id": 7,
+      "patientName": null,
+      "age": null,
+      "gender": null,
+      "address": null,
+      "date": null,
+      "diagnosis": null,
+      "treatment": null
+    },
+    {
+      "id": "57db",
+      "patientName": "asd",
+      "age": "2",
+      "gender": "Male",
+      "address": "adas",
+      "diagnosis": "adsads",
+      "treatment": "asd",
+      "date": "2025-11-07"
+    }
+  ]
+}
