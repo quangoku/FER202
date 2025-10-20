@@ -1,0 +1,39 @@
+#  Medical Record Management App
+
+Ứng dụng **quản lý hồ sơ bệnh án** đơn giản (CRUD) được xây dựng bằng **React + React Bootstrap + JSON Server**.  
+Dự án giúp người dùng thêm, sửa, xóa và xem hồ sơ bệnh án của bệnh nhân.
+
+---
+
+##  Tính năng chính
+
+-  Thêm mới hồ sơ  
+-  Cập nhật hồ sơ bệnh án  
+-  Xóa hồ sơ  
+-  Tìm kiếm theo tên bệnh nhân hoặc chẩn đoán  
+-  Lưu dữ liệu qua **JSON Server**
+
+---
+
+##  Công nghệ sử dụng
+
+| Loại | Công nghệ |
+|------|------------|
+| Frontend | React, React Bootstrap |
+| Backend giả lập | JSON Server |
+| Ngôn ngữ | JavaScript (ES6) |
+| Công cụ | VSCode, npm |
+
+---
+###  Clone dự án
+
+```bash
+git clone https://github.com/your-username/medical-record-app.git
+cd medical-record-app
+
+##  Cài đặt & Chạy dự án
+npm install
+npx json-server --watch db.json --port 8080
+npm start
+
+
