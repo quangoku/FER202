@@ -17,12 +17,11 @@ Dự án giúp người dùng thêm, sửa, xóa và xem hồ sơ bệnh án c�
 
 ##  Công nghệ sử dụng
 
-| Loại | Công nghệ |
-|------|------------|
-| Frontend | React, React Bootstrap |
-| Backend giả lập | JSON Server |
-| Ngôn ngữ | JavaScript (ES6) |
-| Công cụ | VSCode, npm |
+
+| Frontend : React, React Bootstrap 
+| Backend :   JSON Server 
+| Ngôn ngữ: JavaScript (ES6) 
+| Công cụ : VSCode, npm
 
 ---
 ###  Clone dự án
