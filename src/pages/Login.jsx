@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LoginForm from "../components/LoginForm";
 import { USER_ROUTE } from "../ApiRoute";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,11 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Clear any existing user session when the login page loads
+    localStorage.removeItem("userRole");
+  }, []);
 
   const handleLogin = async (username, password) => {
     try {
