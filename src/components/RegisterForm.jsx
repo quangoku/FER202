@@ -55,6 +55,21 @@ const RegisterForm = ({ onRegister, error }) => {
           onChange={handleChange}
         />
       </div>
+      <div className="form-group">
+        <label htmlFor="role">Role (Optional)</label>
+        <select
+          className="form-control"
+          id="role"
+          name="role"
+          value={formData.role}
+          onChange={handleChange}
+        >
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+          <option value="user">Doctor</option>
+          <option value="admin">Nurse</option>
+        </select>
+      </div>
       <button type="submit" className="btn btn-primary btn-block mt-3">
         Register
       </button>
