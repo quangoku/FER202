@@ -10,6 +10,8 @@ const Login = () => {
   useEffect(() => {
     // Clear any existing user session when the login page loads
     localStorage.removeItem("userRole");
+    localStorage.removeItem("username");
+    localStorage.removeItem("fullName");
   }, []);
 
   const handleLogin = async (username, password) => {
@@ -22,6 +24,8 @@ const Login = () => {
 
       if (user) {
         localStorage.setItem("userRole", user.role);
+        localStorage.setItem("username", user.username);
+        localStorage.setItem("fullName", user.fullName || "");
         navigate("/");
       } else {
         setError("Invalid username or password");
