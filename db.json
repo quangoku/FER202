@@ -60,7 +60,6 @@
   "prescriptions": [
     {
       "id": "p1",
-      "recordID": "1",
       "medicines": [
         {
           "medicineID": "m1",
