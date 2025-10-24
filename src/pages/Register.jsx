@@ -8,13 +8,23 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleRegister = async (formData) => {
+    const dataToSend = {
+      username: formData.username,
+      password: formData.password,
+      role: formData.role || "user",
+    };
+
+    if (formData.fullName) {
+      dataToSend.fullName = formData.fullName;
+    }
+
     try {
       const response = await fetch(USER_ROUTE, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSend),
       });
 
       if (response.ok) {

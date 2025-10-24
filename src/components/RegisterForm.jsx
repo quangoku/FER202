@@ -4,7 +4,8 @@ const RegisterForm = ({ onRegister, error }) => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
-    role: "user", // Default role
+    fullName: "",
+    role: "user",
   });
 
   const handleChange = (e) => {
@@ -41,6 +42,17 @@ const RegisterForm = ({ onRegister, error }) => {
           value={formData.password}
           onChange={handleChange}
           required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="fullName">Full Name (Optional)</label>
+        <input
+          type="text"
+          className="form-control"
+          id="fullName"
+          name="fullName"
+          value={formData.fullName}
+          onChange={handleChange}
         />
       </div>
       <button type="submit" className="btn btn-primary btn-block mt-3">
