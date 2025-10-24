@@ -13,6 +13,12 @@
       "password": "123",
       "role": "Nurse",
       "fullName": "Y tá Trần Thị L"
+    },
+    {
+      "username": "tonx",
+      "password": "123",
+      "role": "user",
+      "id": "bvvoICZ"
     }
   ],
   "medicalRecords": [

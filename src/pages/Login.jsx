@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LoginForm from "../components/LoginForm";
 import { USER_ROUTE } from "../ApiRoute";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // Import Link
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -37,6 +37,11 @@ const Login = () => {
         <div className="col-md-6">
           <h2 className="text-center mt-5">Login</h2>
           <LoginForm onLogin={handleLogin} error={error} />
+          <div className="text-center mt-3">
+            <p>
+              Don't have an account? <Link to="/register">Register here</Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>
