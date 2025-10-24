@@ -1,84 +1,138 @@
 {
+  "users": [
+    {
+      "id": "u1",
+      "username": "admin",
+      "password": "123",
+      "role": "Doctor",
+      "fullName": "Bác sĩ Nguyễn Văn K",
+      "token": "emr-doctor-token-12345"
+    },
+    {
+      "id": "u2",
+      "username": "nurse",
+      "password": "123",
+      "role": "Nurse",
+      "fullName": "Y tá Trần Thị L",
+      "token": "emr-nurse-token-67890"
+    }
+  ],
+
   "medicalRecords": [
     {
-      "id": 1,
+      "id": "1",
       "patientName": "Nguyen Van A",
       "age": 30,
       "gender": "Male",
       "address": "123 Le Loi, Hanoi",
       "date": "2025-10-20",
       "diagnosis": "Flu",
-      "treatment": "Rest and hydration"
+      "doctorID": "u1",
+      "treatment": "Rest and hydration",
+      "prescriptionID": "p1"
     },
     {
-      "id": 2,
+      "id": "2",
       "patientName": "Nguyen Van A",
       "age": 30,
       "gender": "Male",
       "address": "123 Le Loi, Hanoi",
       "date": "2025-10-20",
       "diagnosis": "High blood pressure",
-      "treatment": "Medication prescribed"
+      "doctorID": "u1",
+      "treatment": "Medication prescribed",
+      "prescriptionID": "p2"
     },
     {
-      "id": 3,
+      "id": "3",
       "patientName": "Tran Thi B",
       "age": 25,
       "gender": "Female",
       "address": "456 Tran Hung Dao, Ho Chi Minh City",
       "date": "2025-10-20",
       "diagnosis": "Allergy",
-      "treatment": "Antihistamines"
+      "doctorID": "u1",
+      "treatment": "Antihistamines",
+      "prescriptionID": "p3"
+    }
+  ],
+
+  "prescriptions": [
+    {
+      "id": "p1",
+      "recordID": "1",
+      "medicines": [
+        {
+          "medicineID": "m1",
+          "name": "Paracetamol",
+          "dosage": "500mg",
+          "quantity": 10,
+          "instructions": "Uống 2 viên mỗi 6 giờ"
+        },
+        {
+          "medicineID": "m2",
+          "name": "Vitamin C",
+          "dosage": "1000mg",
+          "quantity": 5,
+          "instructions": "Uống 1 viên mỗi ngày"
+        }
+      ],
+      "issuedDate": "2025-10-20"
     },
     {
-      "id": 4,
-      "patientName": "Le Van C",
-      "age": 40,
-      "gender": "Male",
-      "address": "789 Nguyen Trai, Da Nang",
-      "date": "2025-10-20",
-      "diagnosis": "Diabetes",
-      "treatment": "Insulin therapy"
+      "id": "p2",
+      "recordID": "2",
+      "medicines": [
+        {
+          "medicineID": "m3",
+          "name": "Amlodipine",
+          "dosage": "5mg",
+          "quantity": 30,
+          "instructions": "Uống 1 viên mỗi sáng"
+        }
+      ],
+      "issuedDate": "2025-10-20"
     },
     {
-      "id": 5,
-      "patientName": "Le Van C",
-      "age": 40,
-      "gender": "Male",
-      "address": "789 Nguyen Trai, Da Nang",
-      "date": "2025-06-15",
-      "diagnosis": "Back pain",
-      "treatment": "Physical therapy"
+      "id": "p3",
+      "recordID": "3",
+      "medicines": [
+        {
+          "medicineID": "m4",
+          "name": "Loratadine",
+          "dosage": "10mg",
+          "quantity": 7,
+          "instructions": "Uống 1 viên trước khi ngủ"
+        }
+      ],
+      "issuedDate": "2025-10-20"
+    }
+  ],
+
+  "medicines": [
+    {
+      "id": "m1",
+      "name": "Paracetamol",
+      "unit": "Viên",
+      "description": "Hạ sốt, giảm đau"
     },
     {
-      "id": 6,
-      "patientName": "Nguyen Van D",
-      "age": 35,
-      "gender": "Male",
-      "address": "123 Phan Chu Trinh, Hue",
-      "date": null,
-      "diagnosis": null,
-      "treatment": null
+      "id": "m2",
+      "name": "Vitamin C",
+      "unit": "Viên",
+      "description": "Bổ sung vitamin, tăng đề kháng"
     },
     {
-      "id": 7,
-      "patientName": null,
-      "age": null,
-      "gender": null,
-      "address": null,
-      "date": null,
-      "diagnosis": null,
-      "treatment": null
+      "id": "m3",
+      "name": "Amlodipine",
+      "unit": "Viên",
+      "description": "Điều trị tăng huyết áp"
     },
     {
-      "id": "57db",
-      "patientName": "asd",
-      "age": "2",
-      "gender": "Male",
-      "address": "adas",
-      "diagnosis": "adsads",
-      "treatment": "asd",
-      "date": "2025-11-07"
+      "id": "m4",
+      "name": "Loratadine",
+      "unit": "Viên",
+      "description": "Điều trị dị ứng"
     }
   ]
 }
