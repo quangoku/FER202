@@ -5,7 +5,7 @@ export default function AddMedicalRecordForm({ show, onClose, onSave }) {
   const [formData, setFormData] = useState({
     patientName: "",
     age: "",
-    gender: "Male",
+    gender: "",
     address: "",
     diagnosis: "",
     treatment: "",

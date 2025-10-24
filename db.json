@@ -5,19 +5,16 @@
       "username": "admin",
       "password": "123",
       "role": "Doctor",
-      "fullName": "Bác sĩ Nguyễn Văn K",
-      "token": "emr-doctor-token-12345"
+      "fullName": "Bác sĩ Nguyễn Văn K"
     },
     {
       "id": "u2",
       "username": "nurse",
       "password": "123",
       "role": "Nurse",
-      "fullName": "Y tá Trần Thị L",
-      "token": "emr-nurse-token-67890"
+      "fullName": "Y tá Trần Thị L"
     }
   ],
-
   "medicalRecords": [
     {
       "id": "1",
@@ -27,9 +24,7 @@
       "address": "123 Le Loi, Hanoi",
       "date": "2025-10-20",
       "diagnosis": "Flu",
-      "doctorID": "u1",
-      "treatment": "Rest and hydration",
-      "prescriptionID": "p1"
+      "treatment": "Rest and hydration"
     },
     {
       "id": "2",
@@ -39,9 +34,7 @@
       "address": "123 Le Loi, Hanoi",
       "date": "2025-10-20",
       "diagnosis": "High blood pressure",
-      "doctorID": "u1",
-      "treatment": "Medication prescribed",
-      "prescriptionID": "p2"
+      "treatment": "Medication prescribed"
     },
     {
       "id": "3",
@@ -51,12 +44,39 @@
       "address": "456 Tran Hung Dao, Ho Chi Minh City",
       "date": "2025-10-20",
       "diagnosis": "Allergy",
-      "doctorID": "u1",
-      "treatment": "Antihistamines",
-      "prescriptionID": "p3"
+      "treatment": "Antihistamines"
+    },
+    {
+      "id": "a241",
+      "patientName": "asd",
+      "age": "3",
+      "gender": "",
+      "address": "",
+      "diagnosis": "",
+      "treatment": "",
+      "date": "2025-10-24"
+    },
+    {
+      "id": "650d",
+      "patientName": "asd",
+      "age": "3",
+      "gender": "",
+      "address": "adsadsdsaads",
+      "diagnosis": "adsasdads",
+      "treatment": "asdadsads",
+      "date": "2025-10-10"
+    },
+    {
+      "id": "8d8b",
+      "patientName": "sdxzc",
+      "age": "2",
+      "gender": "",
+      "address": "",
+      "diagnosis": "",
+      "treatment": "",
+      "date": "2025-10-09"
     }
   ],
-
   "prescriptions": [
     {
       "id": "p1",
@@ -80,7 +100,6 @@
     },
     {
       "id": "p2",
-      "recordID": "2",
       "medicines": [
         {
           "medicineID": "m3",
@@ -94,7 +113,6 @@
     },
     {
       "id": "p3",
-      "recordID": "3",
       "medicines": [
         {
           "medicineID": "m4",
@@ -107,7 +125,6 @@
       "issuedDate": "2025-10-20"
     }
   ],
-
   "medicines": [
     {
       "id": "m1",
