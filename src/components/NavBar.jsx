@@ -1,10 +1,30 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const location = useLocation();
-  // Ẩn Navbar ở trang login
-  if (location.pathname === "/login") return null;
-  console.log(location.pathname);
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const userRole = localStorage.getItem("userRole");
+    if (userRole) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [location]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("userRole");
+    setIsLoggedIn(false);
+    navigate("/login");
+  };
+
+  if (location.pathname === "/login") {
+    return null;
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container">
@@ -67,11 +87,19 @@ export default function Navbar() {
             </li>
           </ul>
           <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link text-light" to="/login">
-                Đăng xuất
-              </Link>
-            </li>
+            {isLoggedIn ? (
+              <li className="nav-item">
+                <button className="nav-link text-light" onClick={handleLogout}>
+                  Đăng xuất
+                </button>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <Link className="nav-link text-light" to="/login">
+                  Đăng nhập
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
