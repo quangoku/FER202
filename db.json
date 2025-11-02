@@ -139,6 +139,39 @@
         }
       ],
       "issuedDate": "2025-10-20"
+    },
+    {
+      "id": "p4",
+      "issuedDate": "2025-11-02",
+      "medicines": [
+        {
+          "medicineID": "p4-m1",
+          "name": "Vitamin C",
+          "dosage": "1000mg",
+          "quantity": 1,
+          "instructions": "Ăn xong rồi uống\n"
+        }
+      ]
+    },
+    {
+      "id": "A3",
+      "issuedDate": "2025-11-02",
+      "medicines": [
+        {
+          "medicineID": "A3-m1",
+          "name": "Vitamin",
+          "dosage": "500g",
+          "quantity": 1,
+          "instructions": "Ăn trước khi uống"
+        },
+        {
+          "medicineID": "A3-m2",
+          "name": "Vitamin G",
+          "dosage": "1000g",
+          "quantity": 1,
+          "instructions": "Ăn sau khi uống\n"
+        }
+      ]
     }
   ],
   "medicines": [
