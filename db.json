@@ -81,6 +81,16 @@
       "diagnosis": "",
       "treatment": "",
       "date": "2025-10-09"
+    },
+    {
+      "patientName": "Trinh Minh Quang",
+      "age": "50",
+      "gender": "",
+      "address": "Hà Nội",
+      "diagnosis": "Đau ỉa",
+      "treatment": "Cho viên tắc",
+      "date": "2025-11-02",
+      "id": "snEYlGg"
     }
   ],
   "prescriptions": [
