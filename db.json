@@ -19,6 +19,13 @@
       "password": "123",
       "role": "user",
       "id": "bvvoICZ"
+    },
+    {
+      "username": "trieulong",
+      "password": "123",
+      "role": "user",
+      "fullName": "Long",
+      "id": "KvUs8Ac"
     }
   ],
   "medicalRecords": [

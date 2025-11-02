@@ -7,7 +7,7 @@ import Profile from "./pages/Profile";
 import Prescription from "./pages/Prescription";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import Navbar from "./components/NavBar";
+import Navbar from "./components/AppNavBar";
 import PrivateRoute from "./components/PrivateRoute";
 
 export default function App() {

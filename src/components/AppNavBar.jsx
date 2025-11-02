@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Avatar from "./Avatar";
 
 export default function Navbar() {
@@ -8,6 +8,8 @@ export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [fullName, setFullName] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const userRole = localStorage.getItem("userRole");
@@ -25,11 +27,23 @@ export default function Navbar() {
     }
   }, [location]);
 
+  // Đóng dropdown khi click bên ngoài
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const handleLogout = () => {
     localStorage.removeItem("userRole");
     localStorage.removeItem("username");
     localStorage.removeItem("fullName");
     setIsLoggedIn(false);
+    setShowDropdown(false);
     navigate("/login");
   };
 
@@ -38,7 +52,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary ">
       <div className="container">
         <Link className="navbar-brand fw-bold" to="/">
           ClinicSys
@@ -90,24 +104,25 @@ export default function Navbar() {
           </ul>
           <ul className="navbar-nav">
             {isLoggedIn ? (
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle d-flex align-items-center"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
+              <li className="nav-item dropdown" ref={dropdownRef}>
+                <button
+                  className="nav-link dropdown-toggle d-flex align-items-center btn btn-link text-decoration-none"
+                  onClick={() => setShowDropdown(!showDropdown)}
+                  style={{ border: 'none', background: 'none' }}
                 >
                   <Avatar fullName={fullName} />
                   <span className="ms-2 text-light">{username}</span>
-                </a>
+                </button>
                 <ul
-                  className="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="navbarDropdown"
+                  className={`dropdown-menu dropdown-menu-end ${showDropdown ? 'show' : ''}`}
+                  style={{ position: 'absolute', right: 0 }}
                 >
                   <li>
-                    <Link className="dropdown-item" to="/profile">
+                    <Link 
+                      className="dropdown-item" 
+                      to="/profile"
+                      onClick={() => setShowDropdown(false)}
+                    >
                       Profile
                     </Link>
                   </li>
