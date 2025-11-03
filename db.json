@@ -88,6 +88,16 @@
       "diagnosis": "",
       "treatment": "",
       "date": "2025-10-09"
+    },
+    {
+      "patientName": "Trinh Minh Quang",
+      "age": "50",
+      "gender": "",
+      "address": "Hà Nội",
+      "diagnosis": "Đau ỉa",
+      "treatment": "Cho viên tắc",
+      "date": "2025-11-02",
+      "id": "snEYlGg"
     }
   ],
   "prescriptions": [
@@ -136,6 +146,65 @@
         }
       ],
       "issuedDate": "2025-10-20"
+    },
+    {
+      "id": "p4",
+      "issuedDate": "2025-11-02",
+      "medicines": [
+        {
+          "medicineID": "p4-m1",
+          "name": "Vitamin C",
+          "dosage": "1000mg",
+          "quantity": 1,
+          "instructions": "Ăn xong rồi uống\n"
+        }
+      ]
+    },
+    {
+      "id": "A3",
+      "issuedDate": "2025-11-02",
+      "medicines": [
+        {
+          "medicineID": "A3-m1",
+          "name": "Vitamin",
+          "dosage": "500g",
+          "quantity": 1,
+          "instructions": "Ăn trước khi uống"
+        },
+        {
+          "medicineID": "A3-m2",
+          "name": "Vitamin G",
+          "dosage": "1000g",
+          "quantity": 1,
+          "instructions": "Ăn sau khi uống\n"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "issuedDate": "2025-11-28",
+      "medicines": [
+        {
+          "medicineID": "m2",
+          "name": "Vitamin D",
+          "dosage": "100",
+          "quantity": 1,
+          "instructions": "Ăn rồi uống"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "issuedDate": "2025-11-03",
+      "medicines": [
+        {
+          "medicineID": "m3",
+          "name": "Amlodipine",
+          "dosage": "1000mg",
+          "quantity": 1,
+          "instructions": "Ăn rồng uống"
+        }
+      ]
     }
   ],
   "medicines": [
@@ -143,11 +212,11 @@
       "id": "m1",
       "name": "Paracetamol",
       "unit": "Viên",
-      "description": "Hạ sốt, giảm đau"
+      "description": "Bị đau lòng"
     },
     {
       "id": "m2",
-      "name": "Vitamin C",
+      "name": "Vitamin D",
       "unit": "Viên",
       "description": "Bổ sung vitamin, tăng đề kháng"
     },
@@ -161,7 +230,13 @@
       "id": "m4",
       "name": "Loratadine",
       "unit": "Viên",
-      "description": "Điều trị dị ứng"
+      "description": "Bị đau lòng"
+    },
+    {
+      "id": "vGXlAmw",
+      "name": "Berberin",
+      "unit": "Viên",
+      "description": "Bị đau bụng"
     }
   ]
 }

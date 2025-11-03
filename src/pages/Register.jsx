@@ -8,17 +8,26 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleRegister = async (formData) => {
-    const dataToSend = {
-      username: formData.username,
-      password: formData.password,
-      role: formData.role || "user",
-    };
-
-    if (formData.fullName) {
-      dataToSend.fullName = formData.fullName;
-    }
-
     try {
+      // Check if username already exists
+      const usersResponse = await fetch(`${USER_ROUTE}?username=${formData.username}`);
+      const existingUsers = await usersResponse.json();
+
+      if (existingUsers.length > 0) {
+        setError("Username already exists. Please choose a different one.");
+        return;
+      }
+
+      const dataToSend = {
+        username: formData.username,
+        password: formData.password,
+        role: formData.role || "user",
+      };
+
+      if (formData.fullName) {
+        dataToSend.fullName = formData.fullName;
+      }
+
       const response = await fetch(USER_ROUTE, {
         method: "POST",
         headers: {
