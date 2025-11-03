@@ -143,11 +143,11 @@
       "id": "m1",
       "name": "Paracetamol",
       "unit": "Viên",
-      "description": "Hạ sốt, giảm đau"
+      "description": "Bị đau lòng"
     },
     {
       "id": "m2",
-      "name": "Vitamin C",
+      "name": "Vitamin D",
       "unit": "Viên",
       "description": "Bổ sung vitamin, tăng đề kháng"
     },
@@ -161,7 +161,7 @@
       "id": "m4",
       "name": "Loratadine",
       "unit": "Viên",
-      "description": "Điều trị dị ứng"
+      "description": "Bị đau lòng"
     }
   ]
 }
