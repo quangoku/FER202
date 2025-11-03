@@ -179,6 +179,32 @@
           "instructions": "Ăn sau khi uống\n"
         }
       ]
+    },
+    {
+      "id": "2",
+      "issuedDate": "2025-11-28",
+      "medicines": [
+        {
+          "medicineID": "m2",
+          "name": "Vitamin D",
+          "dosage": "100",
+          "quantity": 1,
+          "instructions": "Ăn rồi uống"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "issuedDate": "2025-11-03",
+      "medicines": [
+        {
+          "medicineID": "m3",
+          "name": "Amlodipine",
+          "dosage": "1000mg",
+          "quantity": 1,
+          "instructions": "Ăn rồng uống"
+        }
+      ]
     }
   ],
   "medicines": [
@@ -205,6 +231,12 @@
       "name": "Loratadine",
       "unit": "Viên",
       "description": "Bị đau lòng"
+    },
+    {
+      "id": "vGXlAmw",
+      "name": "Berberin",
+      "unit": "Viên",
+      "description": "Bị đau bụng"
     }
   ]
 }

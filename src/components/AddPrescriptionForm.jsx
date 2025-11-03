@@ -1,5 +1,7 @@
-import { useState } from "react";
-import { Modal, Button, Form, Row, Col } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { Modal, Button, Form, Row, Col, Spinner, Alert } from "react-bootstrap";
+import axios from "axios";
+import { MEDICINES_ROUTE } from "../ApiRoute.js";
 
 export default function AddPrescriptionForm({ show, onClose, onSave }) {
   const [id, setId] = useState("");
@@ -7,7 +9,29 @@ export default function AddPrescriptionForm({ show, onClose, onSave }) {
   const [medicines, setMedicines] = useState([
     { medicineID: "", name: "", dosage: "", quantity: 1, instructions: "" },
   ]);
+  const [availableMedicines, setAvailableMedicines] = useState([]);
+  const [loadingMedicines, setLoadingMedicines] = useState(true);
+  const [error, setError] = useState(null);
 
+  useEffect(() => {
+    if (show) {
+      setError(null);
+      fetchMedicines();
+    }
+  }, [show]);
+
+  const fetchMedicines = async () => {
+    try {
+      setLoadingMedicines(true);
+      const response = await axios.get(MEDICINES_ROUTE);
+      setAvailableMedicines(response.data);
+    } catch (err) {
+      setError("Không thể tải danh sách thuốc");
+      console.error(err);
+    } finally {
+      setLoadingMedicines(false);
+    }
+  };
 
   const handleAddMedicine = () => {
     setMedicines([
@@ -16,54 +40,61 @@ export default function AddPrescriptionForm({ show, onClose, onSave }) {
     ]);
   };
 
- 
   const handleRemoveMedicine = (index) => {
-    const updated = medicines.filter((_, i) => i !== index);
-    setMedicines(updated);
+    setMedicines(medicines.filter((_, i) => i !== index));
   };
 
-  
   const handleChangeMedicine = (index, field, value) => {
-    const updated = medicines.map((med, i) =>
-      i === index ? { ...med, [field]: value } : med
+    setMedicines(
+      medicines.map((med, i) =>
+        i === index ? { ...med, [field]: value } : med
+      )
     );
-    setMedicines(updated);
   };
 
-  
   const handleSubmit = (e) => {
     e.preventDefault();
+
 
     const newPrescription = {
       id,
       issuedDate,
       medicines: medicines.map((med, i) => ({
         ...med,
-        medicineID: `${id}-m${i + 1}`,
+        medicineID: med.medicineID || `${id}-m${i + 1}`,
+        quantity: Number(med.quantity),
       })),
     };
 
     onSave(newPrescription);
     onClose();
 
+    // reset form
     setId("");
     setIssuedDate("");
-    setMedicines([
-      { medicineID: "", name: "", dosage: "", quantity: 1, instructions: "" },
-    ]);
+    setMedicines([{ medicineID: "", name: "", dosage: "", quantity: 1, instructions: "" }]);
+    setError(null);
+
+
   };
 
-  return (
-    <Modal show={show} onHide={onClose} size="lg" centered>
-      <Modal.Header closeButton>
-        <Modal.Title className="text-success fw-bold">
-          Thêm Đơn Thuốc Mới
-        </Modal.Title>
-      </Modal.Header>
+  return (<Modal show={show} onHide={onClose} size="lg" centered>
+    <Modal.Header closeButton>
+      <Modal.Title className="text-success fw-bold">
+        Thêm Đơn Thuốc Mới
+      </Modal.Title>
+    </Modal.Header>
 
-      <Modal.Body>
+    ```
+    <Modal.Body>
+      {error && <Alert variant="danger">{error}</Alert>}
+
+      {loadingMedicines ? (
+        <div className="text-center my-3">
+          <Spinner animation="border" />
+        </div>
+      ) : (
         <Form onSubmit={handleSubmit}>
-        
           <Row className="mb-3">
             <Col md={6}>
               <Form.Group>
@@ -90,14 +121,11 @@ export default function AddPrescriptionForm({ show, onClose, onSave }) {
           </Row>
 
           <hr />
-          <h6 className="text-success fw-bold mb-3">
-            Danh sách thuốc trong đơn
-          </h6>
+          <h6 className="text-success fw-bold mb-3">Danh sách thuốc trong đơn</h6>
 
-          
           {medicines.map((med, index) => (
             <div
-              key={index}
+              key={med.medicineID || index}
               className="p-3 mb-3 border rounded bg-light position-relative"
             >
               <h6 className="fw-semibold text-primary mb-2">
@@ -108,16 +136,43 @@ export default function AddPrescriptionForm({ show, onClose, onSave }) {
                 <Col md={6}>
                   <Form.Group>
                     <Form.Label>Tên thuốc</Form.Label>
-                    <Form.Control
-                      type="text"
-                      value={med.name}
-                      onChange={(e) =>
-                        handleChangeMedicine(index, "name", e.target.value)
-                      }
+                    <Form.Select
+                      value={med.medicineID}
+                      onChange={(e) => {
+                        const selected = availableMedicines.find(
+                          (m) => String(m.id) === e.target.value
+                        );
+                        if (selected) {
+                          setMedicines((prev) =>
+                            prev.map((med, i) =>
+                              i === index
+                                ? {
+                                  ...med,
+                                  medicineID: String(selected.id),
+                                  name: selected.name,
+                                  dosage: "",
+                                  quantity: 1,
+                                  instructions: "",
+                                }
+                                : med
+                            )
+                          );
+                        }
+                      }}
+
                       required
-                    />
+                    >
+                      <option value="">-- Chọn thuốc --</option>
+                      {availableMedicines.map((m) => (
+                        <option key={m.id} value={String(m.id)}>
+                          {m.name}
+                        </option>
+                      ))}
+                    </Form.Select>
+
                   </Form.Group>
                 </Col>
+
                 <Col md={3}>
                   <Form.Group>
                     <Form.Label>Liều lượng</Form.Label>
@@ -131,6 +186,7 @@ export default function AddPrescriptionForm({ show, onClose, onSave }) {
                     />
                   </Form.Group>
                 </Col>
+
                 <Col md={3}>
                   <Form.Group>
                     <Form.Label>Số lượng</Form.Label>
@@ -139,7 +195,7 @@ export default function AddPrescriptionForm({ show, onClose, onSave }) {
                       min="1"
                       value={med.quantity}
                       onChange={(e) =>
-                        handleChangeMedicine(index, "quantity", e.target.value)
+                        handleChangeMedicine(index, "quantity", Number(e.target.value))
                       }
                       required
                     />
@@ -173,14 +229,12 @@ export default function AddPrescriptionForm({ show, onClose, onSave }) {
             </div>
           ))}
 
-         
           <div className="text-center">
             <Button variant="outline-success" onClick={handleAddMedicine}>
               + Thêm thuốc
             </Button>
           </div>
 
-          
           <Modal.Footer className="mt-4">
             <Button variant="secondary" onClick={onClose}>
               Hủy
@@ -190,7 +244,10 @@ export default function AddPrescriptionForm({ show, onClose, onSave }) {
             </Button>
           </Modal.Footer>
         </Form>
-      </Modal.Body>
-    </Modal>
+      )}
+    </Modal.Body>
+  </Modal>
+
+
   );
 }

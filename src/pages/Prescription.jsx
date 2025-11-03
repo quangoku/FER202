@@ -10,7 +10,7 @@ export default function Prescription() {
   const [selectedDate, setSelectedDate] = useState("");
   const [showAddModal, setShowAddModal] = useState(false);
 
-  // 🔹 Lấy dữ liệu từ API
+  
   useEffect(() => {
     async function getPrescriptionsList() {
       try {
@@ -24,7 +24,7 @@ export default function Prescription() {
     getPrescriptionsList();
   }, []);
 
-  // 🔹 Lọc danh sách theo search & date
+  
   const filteredPrescriptions = useMemo(() => {
     let list = [...prescriptions];
 
@@ -42,7 +42,7 @@ export default function Prescription() {
     return list;
   }, [prescriptions, searchTerm, selectedDate]);
 
-  // 🔹 Thêm mới đơn thuốc
+ 
   const handleAddNewPrescription = async (formData) => {
     try {
       const response = await fetch(PRESCRIPTION_ROUTE, {
@@ -77,7 +77,7 @@ export default function Prescription() {
       className="text-black"
     >
       <Container className="my-4 p-4 rounded-3 shadow-sm bg-light border border-success border-opacity-25 position-relative">
-        {/* 🔹 Nút thêm đơn thuốc */}
+      
         <div className="position-absolute top-0 end-0 p-3 pt-md-4 pe-md-4">
           <Button
             variant="success"
@@ -92,7 +92,6 @@ export default function Prescription() {
           Tìm Kiếm Đơn Thuốc
         </h4>
 
-        {/* 🔹 Form lọc */}
         <Form
           onSubmit={(e) => {
             e.preventDefault();
@@ -125,15 +124,15 @@ export default function Prescription() {
         </Form>
       </Container>
 
-      {/* 🔹 Danh sách đơn thuốc */}
+      
       <PrescriptionsList prescriptions={filteredPrescriptions} />
 
-      {/* 🔹 Footer */}
+      
       <Container className="p-4">
         <p className="text-center text-muted">© 2025 EMR System</p>
       </Container>
 
-      {/* 🔹 Modal thêm đơn thuốc */}
+     
       <AddPrescriptionForm
         show={showAddModal}
         onClose={() => setShowAddModal(false)}

@@ -8,7 +8,7 @@ const MedicalRecordList = ({ records }) => {
       <Row xs={1} md={2} lg={3} className="g-4">
         {records.map((record) => (
           <Col key={record.id}>
-            <MedicalRecord record={record} />
+            <MedicalRecord  record={record} />
           </Col>
         ))}
       </Row>
