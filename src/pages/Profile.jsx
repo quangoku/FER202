@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import Badge from 'react-bootstrap/Badge';
-import Alert from 'react-bootstrap/Alert';
-import Spinner from 'react-bootstrap/Spinner';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
+import {  Container,  Row,  Col,  Card,  Button,  Badge,  Alert,  Spinner,  Form,  Modal } from 'react-bootstrap';
 import Avatar from '../components/Avatar';
+import { USER_ROUTE } from '../ApiRoute';
 
 const Profile = () => {
   const [userProfile, setUserProfile] = useState(null);
@@ -21,11 +13,13 @@ const Profile = () => {
   const [editForm, setEditForm] = useState({
     fullName: ''
   });
+
   const [passwordForm, setPasswordForm] = useState({
     currentPassword: '',
     newPassword: '',
     confirmPassword: ''
   });
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,8 +30,9 @@ const Profile = () => {
         const fullName = localStorage.getItem('fullName');
         const userId = localStorage.getItem('userId');
 
-        if (!userRole || !username) {
-          setError('Bạn chưa đăng nhập. Vui lòng đăng nhập.');
+        // SỬA Ở ĐÂY: Thêm !userId vào điều kiện kiểm tra
+        if (!userRole || !username || !userId) {
+          setError('Bạn chưa đăng nhập hoặc phiên đăng nhập không đầy đủ. Vui lòng đăng nhập.');
           setTimeout(() => navigate('/login'), 2000);
           return;
         }
@@ -100,7 +95,7 @@ const Profile = () => {
 
   const handleSaveProfile = async (e) => {
     e.preventDefault();
-    
+
     try {
       if (!editForm.fullName.trim()) {
         setError('Tên đầy đủ không được để trống');
@@ -108,7 +103,7 @@ const Profile = () => {
       }
 
       // Cập nhật lên server
-      const response = await fetch(`http://localhost:3000/users/${userProfile.id}`, {
+      const response = await fetch(`${USER_ROUTE}/${userProfile.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -144,7 +139,7 @@ const Profile = () => {
 
   const handleChangePassword = async (e) => {
     e.preventDefault();
-    
+
     if (!passwordForm.currentPassword || !passwordForm.newPassword || !passwordForm.confirmPassword) {
       setError('Vui lòng điền đầy đủ thông tin');
       return;
@@ -162,7 +157,7 @@ const Profile = () => {
 
     try {
       // Lấy thông tin user hiện tại để check mật khẩu cũ
-      const response = await fetch(`http://localhost:3000/users/${userProfile.id}`);
+      const response = await fetch(`${USER_ROUTE}/${userProfile.id}`);
       const userData = await response.json();
 
       if (userData.password !== passwordForm.currentPassword) {
@@ -171,7 +166,7 @@ const Profile = () => {
       }
 
       // Cập nhật mật khẩu mới
-      const updateResponse = await fetch(`http://localhost:3000/users/${userProfile.id}`, {
+      const updateResponse = await fetch(`${USER_ROUTE}/${userProfile.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -253,7 +248,7 @@ const Profile = () => {
 
           {/* Profile Header Card */}
           <Card className="shadow-lg border-0 mb-4">
-            <Card.Body className="text-center py-5" style={{ 
+            <Card.Body className="text-center py-5" style={{
               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
             }}>
               <div className="mb-3">
@@ -269,7 +264,7 @@ const Profile = () => {
           <Card className="shadow border-0 mb-4">
             <Card.Header className="bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
               <h5 className="mb-0">📋 Thông tin cá nhân</h5>
-              <Button 
+              <Button
                 variant={isEditing ? "secondary" : "outline-primary"}
                 size="sm"
                 onClick={handleEditToggle}
@@ -384,8 +379,8 @@ const Profile = () => {
                   <strong>Mật khẩu</strong>
                 </Col>
                 <Col xs={7}>
-                  <Button 
-                    variant="outline-warning" 
+                  <Button
+                    variant="outline-warning"
                     size="sm"
                     onClick={() => setShowPasswordModal(true)}
                   >
@@ -404,8 +399,8 @@ const Profile = () => {
             <Card.Body className="px-4 py-4">
               <Row className="g-3">
                 <Col xs={12} sm={6}>
-                  <Button 
-                    variant="outline-primary" 
+                  <Button
+                    variant="outline-primary"
                     className="w-100"
                     onClick={() => navigate('/')}
                   >
@@ -413,8 +408,8 @@ const Profile = () => {
                   </Button>
                 </Col>
                 <Col xs={12} sm={6}>
-                  <Button 
-                    variant="outline-success" 
+                  <Button
+                    variant="outline-success"
                     className="w-100"
                     onClick={() => navigate('/medicines')}
                   >
@@ -422,8 +417,8 @@ const Profile = () => {
                   </Button>
                 </Col>
                 <Col xs={12} sm={6}>
-                  <Button 
-                    variant="outline-info" 
+                  <Button
+                    variant="outline-info"
                     className="w-100"
                     onClick={() => navigate('/prescriptions')}
                   >
@@ -431,8 +426,8 @@ const Profile = () => {
                   </Button>
                 </Col>
                 <Col xs={12} sm={6}>
-                  <Button 
-                    variant="outline-danger" 
+                  <Button
+                    variant="outline-danger"
                     className="w-100"
                     onClick={handleLogout}
                   >

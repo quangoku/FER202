@@ -3,9 +3,9 @@
     {
       "id": "u1",
       "username": "admin",
-      "password": "123",
+      "password": "1234",
       "role": "Doctor",
-      "fullName": "Bác sĩ Nguyễn Văn K"
+      "fullName": "Bác sĩ LÊ VĂN QUÂN"
     },
     {
       "id": "u2",
@@ -22,9 +22,9 @@
     },
     {
       "username": "trieulong",
-      "password": "123",
+      "password": "1234",
       "role": "user",
-      "fullName": "Long",
+      "fullName": "Long TRIEU",
       "id": "KvUs8Ac"
     }
   ],

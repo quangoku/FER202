@@ -12,6 +12,7 @@ const Login = () => {
     localStorage.removeItem("userRole");
     localStorage.removeItem("username");
     localStorage.removeItem("fullName");
+    
   }, []);
 
   const handleLogin = async (username, password) => {
@@ -26,6 +27,7 @@ const Login = () => {
         localStorage.setItem("userRole", user.role);
         localStorage.setItem("username", user.username);
         localStorage.setItem("fullName", user.fullName || "");
+        localStorage.setItem('userId', user.id); // <--- BẠN PHẢI CÓ DÒNG NÀY
         navigate("/");
       } else {
         setError("Invalid username or password");

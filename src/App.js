@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MedicalRecords from "./pages/MedicalRecords";
 import Login from "./pages/Login";
-import Register from "./pages/Register"; // Import Register
+import Register from "./pages/Register"; 
 import Medicines from "./pages/Medicines";
 import Profile from "./pages/Profile";
 import Prescription from "./pages/Prescription";
