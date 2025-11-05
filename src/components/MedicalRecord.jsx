@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Card, Modal, Button } from "react-bootstrap";
+import PropTypes from "prop-types";
 
-const MedicalRecord = ({ record }) => {
+const MedicalRecord = ({ record, handleDelete }) => {
   const { id, patientName, date, diagnosis, treatment, age, gender, address } =
     record;
 
@@ -11,7 +12,8 @@ const MedicalRecord = ({ record }) => {
     e.stopPropagation();
     setShow(true);
   };
-  const handleClose = (e) => {
+
+  const handleClose = () => {
     setShow(false);
   };
 
@@ -26,10 +28,19 @@ const MedicalRecord = ({ record }) => {
         onClick={handleShow}
       >
         <Card.Body className="bg-white rounded p-3">
-          <div className="mb-2">
+          <div className="mb-2 d-flex justify-content-between">
             <Card.Title className="fs-5 fw-bold text-truncate m-0 text-success">
               {patientName || "Chưa có tên"}
             </Card.Title>
+            <Card.Text
+              className="text-danger"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleDelete(id);
+              }}
+            >
+              Delete
+            </Card.Text>
           </div>
 
           <div className="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary pb-2">
@@ -91,6 +102,20 @@ const MedicalRecord = ({ record }) => {
       </Modal>
     </>
   );
+};
+
+MedicalRecord.propTypes = {
+  record: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    patientName: PropTypes.string.isRequired,
+    date: PropTypes.string,
+    diagnosis: PropTypes.string,
+    treatment: PropTypes.string,
+    age: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    gender: PropTypes.string,
+    address: PropTypes.string,
+  }).isRequired,
+  handleDelete: PropTypes.func,
 };
 
 export default MedicalRecord;
