@@ -30,74 +30,34 @@
   ],
   "medicalRecords": [
     {
-      "id": "1",
-      "patientName": "Nguyen Van A",
-      "age": 30,
+      "patientName": "a",
+      "age": "1",
       "gender": "Male",
-      "address": "123 Le Loi, Hanoi",
-      "date": "2025-10-20",
-      "diagnosis": "Flu",
-      "treatment": "Rest and hydration"
-    },
-    {
-      "id": "2",
-      "patientName": "Nguyen Van A",
-      "age": 30,
-      "gender": "Male",
-      "address": "123 Le Loi, Hanoi",
-      "date": "2025-10-20",
-      "diagnosis": "High blood pressure",
-      "treatment": "Medication prescribed"
-    },
-    {
-      "id": "3",
-      "patientName": "Tran Thi B",
-      "age": 25,
-      "gender": "Female",
-      "address": "456 Tran Hung Dao, Ho Chi Minh City",
-      "date": "2025-10-20",
-      "diagnosis": "Allergy",
-      "treatment": "Antihistamines"
-    },
-    {
-      "id": "a241",
-      "patientName": "asd",
-      "age": "3",
-      "gender": "",
-      "address": "",
-      "diagnosis": "",
-      "treatment": "",
-      "date": "2025-10-24"
-    },
-    {
-      "id": "650d",
-      "patientName": "asd",
-      "age": "3",
-      "gender": "",
-      "address": "adsadsdsaads",
-      "diagnosis": "adsasdads",
-      "treatment": "asdadsads",
-      "date": "2025-10-10"
-    },
-    {
-      "id": "8d8b",
-      "patientName": "sdxzc",
-      "age": "2",
-      "gender": "",
-      "address": "",
-      "diagnosis": "",
-      "treatment": "",
-      "date": "2025-10-09"
-    },
-    {
-      "patientName": "Trinh Minh Quang",
-      "age": "50",
-      "gender": "",
       "address": "Hà Nội",
-      "diagnosis": "Đau ỉa",
-      "treatment": "Cho viên tắc",
-      "date": "2025-11-02",
-      "id": "snEYlGg"
+      "diagnosis": "a",
+      "treatment": "a",
+      "date": "2025-11-05",
+      "id": 1
+    },
+    {
+      "patientName": "a",
+      "age": "2",
+      "gender": "Female",
+      "address": "",
+      "diagnosis": "a",
+      "treatment": "",
+      "date": "2025-11-05",
+      "id": 2
+    },
+    {
+      "patientName": "3",
+      "age": "3",
+      "gender": "Female",
+      "address": "3",
+      "diagnosis": "3",
+      "treatment": "3",
+      "date": "2025-11-05",
+      "id": 3
     }
   ],
   "prescriptions": [
