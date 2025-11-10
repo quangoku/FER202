@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 import LoginForm from "../components/LoginForm";
 import { USER_ROUTE } from "../ApiRoute";
-import { useNavigate, Link } from "react-router-dom"; // Import Link
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Clear any existing user session when the login page loads
     localStorage.removeItem("userRole");
     localStorage.removeItem("username");
     localStorage.removeItem("fullName");
-    
   }, []);
 
   const handleLogin = async (username, password) => {
@@ -27,7 +25,7 @@ const Login = () => {
         localStorage.setItem("userRole", user.role);
         localStorage.setItem("username", user.username);
         localStorage.setItem("fullName", user.fullName || "");
-        localStorage.setItem('userId', user.id); // <--- BẠN PHẢI CÓ DÒNG NÀY
+        localStorage.setItem("userId", user.id);
         navigate("/");
       } else {
         setError("Invalid username or password");
@@ -41,7 +39,7 @@ const Login = () => {
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <h2 className="text-center mt-5">Login</h2>
+          <h2 className="text-center mt-5">EMR Login</h2>
           <LoginForm onLogin={handleLogin} error={error} />
           <div className="text-center mt-3">
             <p>

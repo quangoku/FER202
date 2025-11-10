@@ -3,9 +3,9 @@
     {
       "id": "u1",
       "username": "admin",
-      "password": "1234",
+      "password": "123",
       "role": "Doctor",
-      "fullName": "Bác sĩ LÊ VĂN QUÂN"
+      "fullName": "levanquan"
     },
     {
       "id": "u2",
@@ -26,38 +26,65 @@
       "role": "user",
       "fullName": "Long TRIEU",
       "id": "KvUs8Ac"
+    },
+    {
+      "username": "admin2",
+      "password": "123",
+      "role": "user",
+      "fullName": "asd",
+      "id": "CtEz8n-"
     }
   ],
   "medicalRecords": [
     {
-      "patientName": "a",
-      "age": "1",
+      "patientName": "Nguyễn Văn B",
+      "age": "45",
       "gender": "Male",
-      "address": "Hà Nội",
-      "diagnosis": "a",
-      "treatment": "a",
-      "date": "2025-11-05",
+      "address": "TP. Hồ Chí Minh",
+      "diagnosis": "Tiểu đường loại 2",
+      "treatment": "Thay đổi lối sống, Metformin 500mg/ngày",
+      "date": "2025-11-09",
       "id": 1
     },
     {
-      "patientName": "a",
-      "age": "2",
+      "patientName": "Trần Thị C",
+      "age": "28",
       "gender": "Female",
-      "address": "",
-      "diagnosis": "a",
-      "treatment": "",
-      "date": "2025-11-05",
+      "address": "Đà Nẵng",
+      "diagnosis": "Cảm cúm thông thường",
+      "treatment": "Nghỉ ngơi, bù nước, Paracetamol 500mg khi sốt",
+      "date": "2025-11-10",
       "id": 2
     },
     {
-      "patientName": "3",
-      "age": "3",
-      "gender": "Female",
-      "address": "3",
-      "diagnosis": "3",
-      "treatment": "3",
-      "date": "2025-11-05",
+      "patientName": "Phạm Văn D",
+      "age": "60",
+      "gender": "Male",
+      "address": "Hải Phòng",
+      "diagnosis": "Tăng huyết áp",
+      "treatment": "Amlodipine 5mg/ngày",
+      "date": "2025-10-25",
       "id": 3
+    },
+    {
+      "patientName": "Lê Thị E",
+      "age": "12",
+      "gender": "Female",
+      "address": "Cần Thơ",
+      "diagnosis": "Viêm amidan cấp",
+      "treatment": "Kháng sinh Amoxicillin, thuốc hạ sốt",
+      "date": "2025-11-01",
+      "id": 4
+    },
+    {
+      "patientName": "lê văn quân",
+      "age": "20",
+      "gender": "Male",
+      "address": "thổ tang",
+      "diagnosis": "bong gân mắt cá chân",
+      "treatment": "paracetamol",
+      "date": "2025-11-10",
+      "id": 5
     }
   ],
   "prescriptions": [

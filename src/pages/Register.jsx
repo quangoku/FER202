@@ -10,7 +10,9 @@ const Register = () => {
   const handleRegister = async (formData) => {
     try {
       // Check if username already exists
-      const usersResponse = await fetch(`${USER_ROUTE}?username=${formData.username}`);
+      const usersResponse = await fetch(
+        `${USER_ROUTE}?username=${formData.username}`
+      );
       const existingUsers = await usersResponse.json();
 
       if (existingUsers.length > 0) {
@@ -50,7 +52,16 @@ const Register = () => {
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <h2 className="text-center mt-5">Register</h2>
+          <p
+            className="text-primary"
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            {" "}
+            {"<"}--back to login{" "}
+          </p>
+          <h2 className="text-center mt-5"> EMR Register</h2>
           <RegisterForm onRegister={handleRegister} error={error} />
         </div>
       </div>
