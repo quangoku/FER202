@@ -5,7 +5,7 @@ const RegisterForm = ({ onRegister, error }) => {
     username: "",
     password: "",
     fullName: "",
-    role: "user",
+    role: "doctor",
   });
 
   const handleChange = (e) => {
@@ -55,7 +55,7 @@ const RegisterForm = ({ onRegister, error }) => {
           onChange={handleChange}
         />
       </div>
-      {/* <div className="form-group">
+      <div className="form-group">
         <label htmlFor="role">Role (Optional)</label>
         <select
           className="form-control"
@@ -64,12 +64,10 @@ const RegisterForm = ({ onRegister, error }) => {
           value={formData.role}
           onChange={handleChange}
         >
-          <option value="user">User</option>
+          <option value="doctor">Doctor</option>
           <option value="admin">Admin</option>
-          <option value="user">Doctor</option>
-          <option value="admin">Nurse</option>
         </select>
-      </div> */}
+      </div>
       <button type="submit" className="btn btn-primary btn-block mt-3">
         Register
       </button>

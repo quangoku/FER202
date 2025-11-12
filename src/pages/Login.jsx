@@ -26,7 +26,11 @@ const Login = () => {
         localStorage.setItem("username", user.username);
         localStorage.setItem("fullName", user.fullName || "");
         localStorage.setItem("userId", user.id);
-        navigate("/");
+        if (user.role === "admin") {
+          navigate("/admin/users");
+        } else {
+          navigate("/");
+        }
       } else {
         setError("Invalid username or password");
       }

@@ -10,7 +10,7 @@ export default function Navbar() {
   const [fullName, setFullName] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
-
+  const userRole = localStorage.getItem("userRole");
   useEffect(() => {
     const userRole = localStorage.getItem("userRole");
     const storedUsername = localStorage.getItem("username");
@@ -54,7 +54,10 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary ">
       <div className="container">
-        <Link className="navbar-brand fw-bold" to="/">
+        <Link
+          className="navbar-brand fw-bold"
+          to={userRole === "admin" ? "admin/dashboard" : "/"}
+        >
           ClinicSys
         </Link>
         <button
@@ -71,36 +74,63 @@ export default function Navbar() {
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link
-                className={`nav-link ${
-                  location.pathname === "/" ? "active" : ""
-                }`}
-                to="/"
-              >
-                Medical Records
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className={`nav-link ${
-                  location.pathname === "/medicines" ? "active" : ""
-                }`}
-                to="/medicines"
-              >
-                Medicines
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className={`nav-link ${
-                  location.pathname === "/prescriptions" ? "active" : ""
-                }`}
-                to="/prescriptions"
-              >
-                Prescriptions
-              </Link>
-            </li>
+            {userRole === "doctor" ? (
+              <>
+                <li className="nav-item">
+                  <Link
+                    className={`nav-link ${
+                      location.pathname === "/" ? "active" : ""
+                    }`}
+                    to="/"
+                  >
+                    Medical Records
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className={`nav-link ${
+                      location.pathname === "/medicines" ? "active" : ""
+                    }`}
+                    to="/medicines"
+                  >
+                    Medicines
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className={`nav-link ${
+                      location.pathname === "/prescriptions" ? "active" : ""
+                    }`}
+                    to="/prescriptions"
+                  >
+                    Prescriptions
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <Link
+                    className={`nav-link ${
+                      location.pathname === "/" ? "active" : ""
+                    }`}
+                    to="/admin/dashboard"
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className={`nav-link ${
+                      location.pathname === "/" ? "active" : ""
+                    }`}
+                    to="/admin/users"
+                  >
+                    Users
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
           <ul className="navbar-nav">
             {isLoggedIn ? (
@@ -108,18 +138,20 @@ export default function Navbar() {
                 <button
                   className="nav-link dropdown-toggle d-flex align-items-center btn btn-link text-decoration-none"
                   onClick={() => setShowDropdown(!showDropdown)}
-                  style={{ border: 'none', background: 'none' }}
+                  style={{ border: "none", background: "none" }}
                 >
                   <Avatar fullName={fullName} />
                   <span className="ms-2 text-light">{username}</span>
                 </button>
                 <ul
-                  className={`dropdown-menu dropdown-menu-end ${showDropdown ? 'show' : ''}`}
-                  style={{ position: 'absolute', right: 0 }}
+                  className={`dropdown-menu dropdown-menu-end ${
+                    showDropdown ? "show" : ""
+                  }`}
+                  style={{ position: "absolute", right: 0 }}
                 >
                   <li>
-                    <Link 
-                      className="dropdown-item" 
+                    <Link
+                      className="dropdown-item"
                       to="/profile"
                       onClick={() => setShowDropdown(false)}
                     >
@@ -130,10 +162,7 @@ export default function Navbar() {
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <button
-                      className="dropdown-item"
-                      onClick={handleLogout}
-                    >
+                    <button className="dropdown-item" onClick={handleLogout}>
                       Logout
                     </button>
                   </li>

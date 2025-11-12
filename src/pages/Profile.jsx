@@ -1,8 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {  Container,  Row,  Col,  Card,  Button,  Badge,  Alert,  Spinner,  Form,  Modal } from 'react-bootstrap';
-import Avatar from '../components/Avatar';
-import { USER_ROUTE } from '../ApiRoute';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  Badge,
+  Alert,
+  Spinner,
+  Form,
+  Modal,
+} from "react-bootstrap";
+import Avatar from "../components/Avatar";
+import { USER_ROUTE } from "../ApiRoute";
 
 const Profile = () => {
   const [userProfile, setUserProfile] = useState(null);
@@ -11,29 +22,31 @@ const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [editForm, setEditForm] = useState({
-    fullName: ''
+    fullName: "",
   });
 
   const [passwordForm, setPasswordForm] = useState({
-    currentPassword: '',
-    newPassword: '',
-    confirmPassword: ''
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
   });
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const loadProfile = () => {
       try {
-        const userRole = localStorage.getItem('userRole');
-        const username = localStorage.getItem('username');
-        const fullName = localStorage.getItem('fullName');
-        const userId = localStorage.getItem('userId');
+        const userRole = localStorage.getItem("userRole");
+        const username = localStorage.getItem("username");
+        const fullName = localStorage.getItem("fullName");
+        const userId = localStorage.getItem("userId");
 
         // SỬA Ở ĐÂY: Thêm !userId vào điều kiện kiểm tra
         if (!userRole || !username || !userId) {
-          setError('Bạn chưa đăng nhập hoặc phiên đăng nhập không đầy đủ. Vui lòng đăng nhập.');
-          setTimeout(() => navigate('/login'), 2000);
+          setError(
+            "Bạn chưa đăng nhập hoặc phiên đăng nhập không đầy đủ. Vui lòng đăng nhập."
+          );
+          setTimeout(() => navigate("/login"), 2000);
           return;
         }
 
@@ -41,17 +54,18 @@ const Profile = () => {
           id: userId,
           username: username,
           fullName: fullName || username,
-          role: userRole
+          role: userRole,
         };
 
         setUserProfile(user);
         setEditForm({
-          fullName: fullName || username
+          fullName: fullName || username,
         });
-
       } catch (err) {
-        console.error('Lỗi khi tải thông tin profile:', err);
-        setError('Không thể tải thông tin profile. Vui lòng thử đăng nhập lại.');
+        console.error("Lỗi khi tải thông tin profile:", err);
+        setError(
+          "Không thể tải thông tin profile. Vui lòng thử đăng nhập lại."
+        );
       }
     };
 
@@ -59,17 +73,17 @@ const Profile = () => {
   }, [navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem('userRole');
-    localStorage.removeItem('username');
-    localStorage.removeItem('fullName');
-    localStorage.removeItem('userId');
-    navigate('/login');
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("username");
+    localStorage.removeItem("fullName");
+    localStorage.removeItem("userId");
+    navigate("/login");
   };
 
   const handleEditToggle = () => {
     if (isEditing) {
       setEditForm({
-        fullName: userProfile.fullName
+        fullName: userProfile.fullName,
       });
     }
     setIsEditing(!isEditing);
@@ -79,17 +93,17 @@ const Profile = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setEditForm(prev => ({
+    setEditForm((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handlePasswordChange = (e) => {
     const { name, value } = e.target;
-    setPasswordForm(prev => ({
+    setPasswordForm((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -98,60 +112,64 @@ const Profile = () => {
 
     try {
       if (!editForm.fullName.trim()) {
-        setError('Tên đầy đủ không được để trống');
+        setError("Tên đầy đủ không được để trống");
         return;
       }
 
       // Cập nhật lên server
       const response = await fetch(`${USER_ROUTE}/${userProfile.id}`, {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          fullName: editForm.fullName
-        })
+          fullName: editForm.fullName,
+        }),
       });
 
       if (!response.ok) {
-        throw new Error('Không thể cập nhật thông tin');
+        throw new Error("Không thể cập nhật thông tin");
       }
 
       // Cập nhật localStorage
-      localStorage.setItem('fullName', editForm.fullName);
+      localStorage.setItem("fullName", editForm.fullName);
 
       // Cập nhật state
-      setUserProfile(prev => ({
+      setUserProfile((prev) => ({
         ...prev,
-        fullName: editForm.fullName
+        fullName: editForm.fullName,
       }));
 
       setIsEditing(false);
-      setSuccess('✅ Cập nhật thông tin thành công!');
+      setSuccess("✅ Cập nhật thông tin thành công!");
       setError(null);
 
       setTimeout(() => setSuccess(null), 3000);
     } catch (err) {
-      console.error('Lỗi khi lưu thông tin:', err);
-      setError('Không thể lưu thông tin. Vui lòng thử lại.');
+      console.error("Lỗi khi lưu thông tin:", err);
+      setError("Không thể lưu thông tin. Vui lòng thử lại.");
     }
   };
 
   const handleChangePassword = async (e) => {
     e.preventDefault();
 
-    if (!passwordForm.currentPassword || !passwordForm.newPassword || !passwordForm.confirmPassword) {
-      setError('Vui lòng điền đầy đủ thông tin');
+    if (
+      !passwordForm.currentPassword ||
+      !passwordForm.newPassword ||
+      !passwordForm.confirmPassword
+    ) {
+      setError("Vui lòng điền đầy đủ thông tin");
       return;
     }
 
     if (passwordForm.newPassword.length < 3) {
-      setError('Mật khẩu mới phải có ít nhất 3 ký tự');
+      setError("Mật khẩu mới phải có ít nhất 3 ký tự");
       return;
     }
 
     if (passwordForm.newPassword !== passwordForm.confirmPassword) {
-      setError('Mật khẩu xác nhận không khớp');
+      setError("Mật khẩu xác nhận không khớp");
       return;
     }
 
@@ -161,51 +179,59 @@ const Profile = () => {
       const userData = await response.json();
 
       if (userData.password !== passwordForm.currentPassword) {
-        setError('Mật khẩu hiện tại không đúng');
+        setError("Mật khẩu hiện tại không đúng");
         return;
       }
 
       // Cập nhật mật khẩu mới
       const updateResponse = await fetch(`${USER_ROUTE}/${userProfile.id}`, {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          password: passwordForm.newPassword
-        })
+          password: passwordForm.newPassword,
+        }),
       });
 
       if (!updateResponse.ok) {
-        throw new Error('Không thể đổi mật khẩu');
+        throw new Error("Không thể đổi mật khẩu");
       }
 
-      setSuccess('✅ Đổi mật khẩu thành công!');
+      setSuccess("✅ Đổi mật khẩu thành công!");
       setError(null);
       setShowPasswordModal(false);
       setPasswordForm({
-        currentPassword: '',
-        newPassword: '',
-        confirmPassword: ''
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
       });
 
       setTimeout(() => setSuccess(null), 3000);
     } catch (err) {
-      console.error('Lỗi khi đổi mật khẩu:', err);
-      setError('Không thể đổi mật khẩu. Vui lòng thử lại.');
+      console.error("Lỗi khi đổi mật khẩu:", err);
+      setError("Không thể đổi mật khẩu. Vui lòng thử lại.");
     }
   };
 
   const getRoleBadge = (role) => {
     const roleConfig = {
-      'Doctor': { bg: 'primary', icon: '🩺', text: 'Bác sĩ' },
-      'Nurse': { bg: 'success', icon: '💉', text: 'Y tá' },
-      'Admin': { bg: 'danger', icon: '⚙️', text: 'Quản trị viên' },
-      'Patient': { bg: 'info', icon: '👤', text: 'Bệnh nhân' },
-      'user': { bg: 'secondary', icon: '👤', text: 'Người dùng' }
+      Doctor: { bg: "primary", icon: "🩺", text: "Bác sĩ" },
+      Nurse: { bg: "success", icon: "💉", text: "Y tá" },
+      Admin: { bg: "danger", icon: "⚙️", text: "Quản trị viên" },
+      Patient: { bg: "info", icon: "👤", text: "Bệnh nhân" },
+      user: { bg: "secondary", icon: "👤", text: "Người dùng" },
     };
-    const config = roleConfig[role] || { bg: 'secondary', icon: '👤', text: role };
-    return <Badge bg={config.bg} className="fs-6 px-3 py-2">{config.icon} {config.text}</Badge>;
+    const config = roleConfig[role] || {
+      bg: "secondary",
+      icon: "👤",
+      text: role,
+    };
+    return (
+      <Badge bg={config.bg} className="fs-6 px-3 py-2">
+        {config.icon} {config.text}
+      </Badge>
+    );
   };
 
   if (error && !userProfile) {
@@ -236,7 +262,11 @@ const Profile = () => {
         <Col md={10} lg={8}>
           {/* Alert Messages */}
           {success && (
-            <Alert variant="success" dismissible onClose={() => setSuccess(null)}>
+            <Alert
+              variant="success"
+              dismissible
+              onClose={() => setSuccess(null)}
+            >
               {success}
             </Alert>
           )}
@@ -248,9 +278,12 @@ const Profile = () => {
 
           {/* Profile Header Card */}
           <Card className="shadow-lg border-0 mb-4">
-            <Card.Body className="text-center py-5" style={{
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-            }}>
+            <Card.Body
+              className="text-center py-5"
+              style={{
+                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+              }}
+            >
               <div className="mb-3">
                 <Avatar fullName={userProfile.fullName} size="xl" />
               </div>
@@ -269,7 +302,7 @@ const Profile = () => {
                 size="sm"
                 onClick={handleEditToggle}
               >
-                {isEditing ? '❌ Hủy' : '✏️ Chỉnh sửa'}
+                {isEditing ? "❌ Hủy" : "✏️ Chỉnh sửa"}
               </Button>
             </Card.Header>
             <Card.Body className="px-4 py-4">
@@ -288,44 +321,45 @@ const Profile = () => {
                     <Col xs={5} className="text-muted">
                       <strong>Tên đầy đủ</strong>
                     </Col>
-                    <Col xs={7}>
-                      {userProfile.fullName}
-                    </Col>
+                    <Col xs={7}>{userProfile.fullName}</Col>
                   </Row>
                   <hr className="my-3" />
                   <Row className="mb-3">
                     <Col xs={5} className="text-muted">
                       <strong>Tên đăng nhập</strong>
                     </Col>
-                    <Col xs={7}>
-                      {userProfile.username}
-                    </Col>
+                    <Col xs={7}>{userProfile.username}</Col>
                   </Row>
                   <hr className="my-3" />
                   <Row>
                     <Col xs={5} className="text-muted">
                       <strong>Vai trò</strong>
                     </Col>
-                    <Col xs={7}>
-                      {getRoleBadge(userProfile.role)}
-                    </Col>
+                    <Col xs={7}>{getRoleBadge(userProfile.role)}</Col>
                   </Row>
                 </>
               ) : (
                 <Form onSubmit={handleSaveProfile}>
                   <Form.Group className="mb-3">
-                    <Form.Label><strong>ID</strong></Form.Label>
+                    <Form.Label>
+                      <strong>ID</strong>
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       value={userProfile.id}
                       disabled
                       className="bg-light"
                     />
-                    <Form.Text className="text-muted">ID không thể thay đổi</Form.Text>
+                    <Form.Text className="text-muted">
+                      ID không thể thay đổi
+                    </Form.Text>
                   </Form.Group>
 
                   <Form.Group className="mb-3">
-                    <Form.Label><strong>Tên đầy đủ</strong> <span className="text-danger">*</span></Form.Label>
+                    <Form.Label>
+                      <strong>Tên đầy đủ</strong>{" "}
+                      <span className="text-danger">*</span>
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       name="fullName"
@@ -337,26 +371,36 @@ const Profile = () => {
                   </Form.Group>
 
                   <Form.Group className="mb-3">
-                    <Form.Label><strong>Tên đăng nhập</strong></Form.Label>
+                    <Form.Label>
+                      <strong>Tên đăng nhập</strong>
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       value={userProfile.username}
                       disabled
                       className="bg-light"
                     />
-                    <Form.Text className="text-muted">Tên đăng nhập không thể thay đổi</Form.Text>
+                    <Form.Text className="text-muted">
+                      Tên đăng nhập không thể thay đổi
+                    </Form.Text>
                   </Form.Group>
 
                   <Form.Group className="mb-3">
-                    <Form.Label><strong>Vai trò</strong></Form.Label>
-                    <div className="mt-2">
-                      {getRoleBadge(userProfile.role)}
-                    </div>
-                    <Form.Text className="text-muted">Vai trò được cấp bởi quản trị viên</Form.Text>
+                    <Form.Label>
+                      <strong>Vai trò</strong>
+                    </Form.Label>
+                    <div className="mt-2">{getRoleBadge(userProfile.role)}</div>
+                    <Form.Text className="text-muted">
+                      Vai trò được cấp bởi quản trị viên
+                    </Form.Text>
                   </Form.Group>
 
                   <div className="d-flex gap-2 mt-4">
-                    <Button variant="primary" type="submit" className="flex-grow-1">
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      className="flex-grow-1"
+                    >
                       💾 Lưu thay đổi
                     </Button>
                     <Button variant="secondary" onClick={handleEditToggle}>
@@ -390,65 +434,24 @@ const Profile = () => {
               </Row>
             </Card.Body>
           </Card>
-
-          {/* Quick Actions Card */}
-          <Card className="shadow border-0">
-            <Card.Header className="bg-white border-0 pt-4 pb-0">
-              <h5 className="mb-0">⚡ Hành động nhanh</h5>
-            </Card.Header>
-            <Card.Body className="px-4 py-4">
-              <Row className="g-3">
-                <Col xs={12} sm={6}>
-                  <Button
-                    variant="outline-primary"
-                    className="w-100"
-                    onClick={() => navigate('/')}
-                  >
-                    📂 Hồ sơ bệnh án
-                  </Button>
-                </Col>
-                <Col xs={12} sm={6}>
-                  <Button
-                    variant="outline-success"
-                    className="w-100"
-                    onClick={() => navigate('/medicines')}
-                  >
-                    💊 Quản lý thuốc
-                  </Button>
-                </Col>
-                <Col xs={12} sm={6}>
-                  <Button
-                    variant="outline-info"
-                    className="w-100"
-                    onClick={() => navigate('/prescriptions')}
-                  >
-                    📝 Đơn thuốc
-                  </Button>
-                </Col>
-                <Col xs={12} sm={6}>
-                  <Button
-                    variant="outline-danger"
-                    className="w-100"
-                    onClick={handleLogout}
-                  >
-                    🚪 Đăng xuất
-                  </Button>
-                </Col>
-              </Row>
-            </Card.Body>
-          </Card>
         </Col>
       </Row>
 
       {/* Change Password Modal */}
-      <Modal show={showPasswordModal} onHide={() => setShowPasswordModal(false)} centered>
+      <Modal
+        show={showPasswordModal}
+        onHide={() => setShowPasswordModal(false)}
+        centered
+      >
         <Modal.Header closeButton>
           <Modal.Title>🔑 Đổi mật khẩu</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleChangePassword}>
             <Form.Group className="mb-3">
-              <Form.Label>Mật khẩu hiện tại <span className="text-danger">*</span></Form.Label>
+              <Form.Label>
+                Mật khẩu hiện tại <span className="text-danger">*</span>
+              </Form.Label>
               <Form.Control
                 type="password"
                 name="currentPassword"
@@ -459,7 +462,9 @@ const Profile = () => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Mật khẩu mới <span className="text-danger">*</span></Form.Label>
+              <Form.Label>
+                Mật khẩu mới <span className="text-danger">*</span>
+              </Form.Label>
               <Form.Control
                 type="password"
                 name="newPassword"
@@ -472,7 +477,9 @@ const Profile = () => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Xác nhận mật khẩu mới <span className="text-danger">*</span></Form.Label>
+              <Form.Label>
+                Xác nhận mật khẩu mới <span className="text-danger">*</span>
+              </Form.Label>
               <Form.Control
                 type="password"
                 name="confirmPassword"
@@ -486,7 +493,10 @@ const Profile = () => {
               <Button variant="primary" type="submit" className="flex-grow-1">
                 Đổi mật khẩu
               </Button>
-              <Button variant="secondary" onClick={() => setShowPasswordModal(false)}>
+              <Button
+                variant="secondary"
+                onClick={() => setShowPasswordModal(false)}
+              >
                 Hủy
               </Button>
             </div>

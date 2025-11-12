@@ -4,34 +4,28 @@
       "id": "u1",
       "username": "admin",
       "password": "123",
-      "role": "Doctor",
+      "role": "admin",
       "fullName": "levanquan"
-    },
-    {
-      "id": "u2",
-      "username": "nurse",
-      "password": "123",
-      "role": "Nurse",
-      "fullName": "Y tá Trần Thị L"
     },
     {
       "username": "tonx",
       "password": "123",
-      "role": "user",
+      "fullName": "toan",
+      "role": "doctor",
       "id": "bvvoICZ"
     },
     {
       "username": "trieulong",
       "password": "1234",
-      "role": "user",
+      "role": "doctor",
       "fullName": "Long TRIEU",
       "id": "KvUs8Ac"
     },
     {
       "username": "admin2",
       "password": "123",
-      "role": "user",
       "fullName": "asd",
+      "role": "doctor",
       "id": "CtEz8n-"
     }
   ],
